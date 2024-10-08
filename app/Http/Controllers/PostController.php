@@ -9,7 +9,7 @@ class PostController extends Controller
 {
     public function index()
     {
-        return Post::with('comments')->get();  // Returns all posts with their comments
+        return Post::with('comments')->get(); 
     }
 
     public function store(Request $request)
@@ -20,12 +20,12 @@ class PostController extends Controller
             'author' => 'required',
         ]);
 
-        return Post::create($request->all());  // Create a new post
+        return Post::create($request->all()); 
     }
 
     public function show($id)
     {
-        return Post::with('comments')->findOrFail($id);  // Return a single post with its comments
+        return Post::with('comments')->findOrFail($id); 
     }
 
     public function update(Request $request, $id)
@@ -33,7 +33,7 @@ class PostController extends Controller
         $post = Post::findOrFail($id);
         $post->update($request->all());
 
-        return $post;  // Update the specified post
+        return $post; 
     }
 
     public function destroy($id)

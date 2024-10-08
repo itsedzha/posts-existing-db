@@ -9,16 +9,27 @@ class CommentController extends Controller
 {
     public function store(Request $request, $postId)
     {
+        // Validate the input fields
         $request->validate([
             'comment_content' => 'required',
             'commenter' => 'required',
         ]);
-
-        return Comment::create([
+    
+        // Check if the post exists
+        $post = Post::find($postId);
+    
+        if (!$post) {
+            return response()->json(['message' => 'Post not found'], 404);
+        }
+    
+        // Create the comment
+        Comment::create([
             'post_id' => $postId,
             'comment_content' => $request->comment_content,
             'commenter' => $request->commenter,
-        ]);  // Create a new comment for a post
+        ]);
+    
+        return response()->json(['message' => 'Comment added successfully']);
     }
 
     public function destroy($id)

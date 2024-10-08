@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
-    protected $table = 'Comments';  // Your existing table
-    protected $primaryKey = 'comment_id';  // Primary key in the Comments table
+    protected $table = 'Comments';
+    protected $primaryKey = 'comment_id';
     protected $fillable = ['post_id', 'comment_content', 'commenter'];
 
     public function post()
